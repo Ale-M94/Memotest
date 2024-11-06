@@ -1,0 +1,41 @@
+.col {
+    border: 2px solid black;
+}
+
+.fila-juego {
+    height: 25vh;
+}
+
+.cuadro {
+    cursor: pointer;
+    opacity: 0;
+    transition: opacity ease 0.5s;
+}
+
+.azul{
+    background-color: blue;
+}
+
+.rojo{
+    background-color: red;
+}
+
+.verde{
+    background-color: green;
+}
+
+.amarillo{
+    background-color: yellow;
+}
+
+.negro{
+    background-color: black;
+}
+
+.naranja{
+    background-color: orange;
+}
+
+#mensaje-fin{
+    display: none;
+}
