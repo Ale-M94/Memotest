@@ -1,8 +1,8 @@
-const URL = "http://192.168.56.1:8080";
+const URL = "127.0.0.1:8080";
 
 context('Memotest', () => {
 
-  before(() => {
+  beforeEach(() => {
     cy.visit(URL);
   });
 
@@ -13,12 +13,26 @@ context('Memotest', () => {
       cy.get('#tablero').find('.cuadro').should('have.length', NUM_CUADROS);
     });
 
-    /*it('comprueba la cantidad de cuadros', () => {
-      cy.url().should('not.include', 'about:blank');
-      cy.get('#tablero').find('.cuadro').should('have.length', NUM_CUADROS);
-    });
-    */
-  });
+    it('comprueba que los cuadros sean aleatorios', () => {
+      cy.get('.cuadro').then((cuadros) => {
+        let cuadrosIniciales = [];
+        cuadros.each(function (cuadros, i) {
+          cuadrosIniciales.push(cuadros.className);
+        });
 
+        cy.visit(URL);
+
+        let cuadrosNuevos = [];
+        cy.get('.cuadro').then((cuadrosNuevos) => {
+          cuadrosNuevos.each(function (cuadros, i) {
+            cuadrosNuevos.push(cuadros.className);
+          });
+        });
+
+        cy.wrap(cuadrosIniciales).should('not.deep.equal', cuadrosNuevos);
+      });
+
+    });
+  });
 });
 
